@@ -3,7 +3,7 @@ DEBUG = -g
 CFLAGS = -Wall -std=c99 -pedantic -c $(DEBUG)
 LFLAGS = -Wall -std=c99 -pedantic $(DEBUG)
 
-Simulator : Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o tests.o
+tests : Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o
 	$(CC) $(LFLAGS) Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o  -o tests
 
 Array_Modification_Functions.o : Array_Modification_Functions.c Array_Modification_Functions.h
@@ -22,4 +22,4 @@ sortingAnalysis.o : sortingAnalysis.c
 	$(CC) $(CFLAGS) sortingAnalysis.c
 
 clean:
-	\rm *.o sim
+	\rm *.o tests
