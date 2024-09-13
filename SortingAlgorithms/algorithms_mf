@@ -1,0 +1,25 @@
+CC = gcc
+DEBUG = -g
+CFLAGS = -Wall -std=c99 -pedantic -c $(DEBUG)
+LFLAGS = -Wall -std=c99 -pedantic $(DEBUG)
+
+Simulator : Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o tests.o
+	$(CC) $(LFLAGS) Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o  -o tests
+
+Array_Modification_Functions.o : Array_Modification_Functions.c Array_Modification_Functions.h
+	$(CC) $(CFLAGS) Array_Modification_Functions.c
+
+Bubblesort.o : Bubblesort.c Bubblesort.h 
+	$(CC) $(CFLAGS) Bubblesort.c
+
+InsertBinary.o : InsertBinary.c InsertBinary.h 
+	$(CC) $(CFLAGS) InsertBinary.c
+
+Quicksort.o : Quicksort.c Quicksort.h 
+	$(CC) $(CFLAGS) Quicksort.c
+
+sortingAnalysis.o : sortingAnalysis.c 
+	$(CC) $(CFLAGS) sortingAnalysis.c
+
+clean:
+	\rm *.o sim
