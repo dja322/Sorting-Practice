@@ -4,6 +4,8 @@
 #include <sys/time.h>
 #include <stdbool.h>
 
+#include <munit/munit.h>
+
 #include "Array_Modification_Functions.h"
 #include "Bubblesort.h"
 #include "InsertBinary.h"
