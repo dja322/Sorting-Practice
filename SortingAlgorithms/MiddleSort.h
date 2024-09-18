@@ -6,8 +6,6 @@
 //sorts list using THE COOL InsertBinary algorithm
 bool MiddleSort(int Array[], int sizeOfArray);
 
-//puts 4 elements into 4 output variables in order
-void find_order(int a, int b, int c, int d, int *lowest, int *middle1, int *middle2, int *highest);
 
 /*
     Moves elements in array one to the right, 

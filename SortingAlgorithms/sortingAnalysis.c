@@ -18,22 +18,25 @@
 
 int main()
 {
-    int testArr[ARRAY_SIZE];
+    //int testArr[ARRAY_SIZE];
+    int testArr[] = {651, 820, 810, 492, 46, 412, 976, 590};
+
     int testArr2[ARRAY_SIZE];
 
     srand(time(NULL));
 
     //print out unsorted list
-    for (int i = 0; i < ARRAY_SIZE; i++) {
+    // for (int i = 0; i < ARRAY_SIZE; i++) {
 
-        // Find the random number in the range [min, max]
-        testArr[i] = rand() % (1000) + 1;
+    //     // Find the random number in the range [min, max]
+    //     testArr[i] = rand() % (1000) + 1;
 
-    }
+    // }
     copyArray(testArr, testArr2, ARRAY_SIZE);
     printf("\n\n");
 
-    //int testArr[] = {42,68,35,1,70,25,79,59,63,65,6,46,82,28,62,92,96,43,28,37};
+    printArray(testArr, ARRAY_SIZE);
+
 
     /*
         START OF SORTING LOGIC AND TESTING

@@ -1,5 +1,6 @@
 
 #include <stdbool.h>
+#include <stdio.h>
 #include "MiddleSort.h"
 #include "Array_Modification_Functions.h"
 
@@ -13,11 +14,7 @@ bool MiddleSort(int Array[], int sizeOfArray)
     int currentLarge;
     int currentLow;
 
-    printf("%d %d\n", startIndex, endIndex);
-
-    printArray(Array, sizeOfArray);
-
-
+    //create initial state
     if (Array[startIndex] > Array[endIndex])
     {
         currentLarge = Array[startIndex];
@@ -29,20 +26,17 @@ bool MiddleSort(int Array[], int sizeOfArray)
         currentLarge = Array[endIndex];
     }
 
+
     Array[startIndex] = currentLow;
     Array[endIndex] = currentLarge;
-
-    printf("%d %d\n", startIndex, endIndex);
-    printf("%d %d\n", currentLow, currentLarge);
-    printArray(Array, sizeOfArray);
 
     startIndex--;
     endIndex++;
 
+    //loop until end of array is passed
     while (startIndex >= 0 && endIndex < sizeOfArray)
     {
-        
-
+        //checks which of the two picks is larger/smaller
         if (Array[startIndex] > Array[endIndex])
         {
             currentLarge = Array[startIndex];
@@ -54,8 +48,14 @@ bool MiddleSort(int Array[], int sizeOfArray)
             currentLarge = Array[endIndex];
         }
 
+        printf("Is this working? %d %d\n", Array[endIndex-1], currentLow);
+
+
+        //if block to determine how elements are moved around and places
         if (currentLow < Array[startIndex+1])
         {
+            puts("IS THIS WHAT IS WRONG 1");
+
             Array[startIndex] = currentLow;
 
             if (currentLarge < Array[endIndex-1])
@@ -65,93 +65,40 @@ bool MiddleSort(int Array[], int sizeOfArray)
                 moveRight2(Array, replacePosition, endIndex);
                 Array[replacePosition] = currentLarge;
             }
-            printf("S1: ");
-
         }
         else if (currentLow > Array[endIndex-1])
         {
+            puts("IS THIS WHAT IS WRONG 2");
             moveLeft(Array, startIndex, endIndex-1);
             Array[endIndex-1] = currentLow;
             Array[endIndex] = currentLarge;
-            printf("S2: ");
-            
         }
         else
         {
+            puts("IS THIS WHAT IS WRONG 3\n");
+
             replacePosition = binarySearchToFindPosition2(Array, currentLow,
                               startIndex+1, endIndex-1);
             moveLeft(Array, startIndex, replacePosition-1);
             Array[replacePosition-1] = currentLow;
 
+            puts("g");
+
             replacePosition = binarySearchToFindPosition2(Array, currentLarge,
                               startIndex, endIndex-1);
             moveRight2(Array, replacePosition, endIndex);
             Array[replacePosition] = currentLarge;
-
-
-            printf("S3: ");
+            puts("gr");
             
         }
-
-        printf("%d %d\n", startIndex, endIndex);
-        printf("%d %d\n", currentLow, currentLarge);
-        printArray(Array, sizeOfArray);
-
         startIndex--;
         endIndex++;
     }
-
-    printArray(Array, sizeOfArray);
 
 
     return true;
 
 }
-
-//puts 4 elements into 4 output variables in order
-void find_order(int a, int b, int c, int d, int *lowest, int *middle1, int *middle2, int *highest) {
-    int low1, high1, low2, high2;
-
-    if (a < b) {
-        low1 = a;
-        high1 = b;
-    } else {
-        low1 = b;
-        high1 = a;
-    }
-
-    if (c < d) {
-        low2 = c;
-        high2 = d;
-    } else {
-        low2 = d;
-        high2 = c;
-    }
-
-    if (low1 < low2) {
-        *lowest = low1;
-        *middle1 = low2;
-    } else {
-        *lowest = low2;
-        *middle1 = low1;
-    }
-
-    if (high1 > high2) {
-        *highest = high1;
-        *middle2 = high2;
-    } else {
-        *highest = high2;
-        *middle2 = high1;
-    }
-
-    if (!(*middle1 < *middle2)) {
-        // Swap middle1 and middle2
-        int temp = *middle1;
-        *middle1 = *middle2;
-        *middle2 = temp;
-    }
-}
-
 
 /*
     Moves elements in array one to the right, 
