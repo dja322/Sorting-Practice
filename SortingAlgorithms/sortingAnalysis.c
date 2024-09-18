@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <stdbool.h>
+#include <time.h>
 
 // #include <munit/munit.h>
 
@@ -19,6 +20,8 @@ int main()
 {
     int testArr[ARRAY_SIZE];
     int testArr2[ARRAY_SIZE];
+
+    srand(time(NULL));
 
     //print out unsorted list
     for (int i = 0; i < ARRAY_SIZE; i++) {
