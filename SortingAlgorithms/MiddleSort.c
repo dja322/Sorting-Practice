@@ -78,10 +78,14 @@ bool MiddleSort(int Array[], int sizeOfArray)
         }
         else
         {
+
+            /*
+                Currently broken
+            */
             replacePosition = binarySearchToFindPosition2(Array, currentLow,
                               startIndex+1, endIndex-1);
-            moveLeft(Array, startIndex, replacePosition);
-            Array[replacePosition] = currentLow;
+            moveLeft(Array, startIndex, replacePosition-1);
+            Array[replacePosition-1] = currentLow;
 
             replacePosition = binarySearchToFindPosition2(Array, currentLarge,
                               startIndex, endIndex-1);
