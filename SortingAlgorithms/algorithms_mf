@@ -3,8 +3,8 @@ DEBUG = -g
 CFLAGS = -Wall -std=c99 -pedantic -c $(DEBUG)
 LFLAGS = -Wall -std=c99 -pedantic $(DEBUG)
 
-tests : Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o
-	$(CC) $(LFLAGS) Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o  -o tests
+tests : Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o MiddleSort.o
+	$(CC) $(LFLAGS) Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o MiddleSort.o -o tests
 
 Array_Modification_Functions.o : Array_Modification_Functions.c Array_Modification_Functions.h
 	$(CC) $(CFLAGS) Array_Modification_Functions.c
@@ -20,6 +20,9 @@ Quicksort.o : Quicksort.c Quicksort.h
 
 sortingAnalysis.o : sortingAnalysis.c 
 	$(CC) $(CFLAGS) sortingAnalysis.c
+
+MiddleSort.o : MiddleSort.c MiddleSort.h
+	$(CC) $(CFLAGS) MiddleSort.c
 
 clean:
 	\rm *.o tests

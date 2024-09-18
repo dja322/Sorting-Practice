@@ -4,14 +4,15 @@
 #include <sys/time.h>
 #include <stdbool.h>
 
-#include <munit/munit.h>
+// #include <munit/munit.h>
 
 #include "Array_Modification_Functions.h"
 #include "Bubblesort.h"
 #include "InsertBinary.h"
 #include "Quicksort.h"
+#include "MiddleSort.h"
 
-#define ARRAY_SIZE 1000
+#define ARRAY_SIZE 8
 
 
 int main()
@@ -49,15 +50,18 @@ int main()
             END OF SORTING LOGIC
     */
 
+    
+
     gettimeofday(&start, 0);
 
     //Start sorting
-    InsertBinary(testArr, ARRAY_SIZE);
+    MiddleSort(testArr, ARRAY_SIZE);
 
     gettimeofday(&end, 0);
 
     timeDif = (end.tv_sec - start.tv_sec) + 1e-6 * (end.tv_usec - start.tv_usec);
-    printf("Time Taken for InsertBinary: %lf\n", timeDif);
+    printf("Time Taken for Middlesort: %lf\n", timeDif);
 
+    
     return 0;
 }

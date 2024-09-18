@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "stdlib.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "insertbinary.h": "c",
+        "middlesort.h": "c"
     }
 }
