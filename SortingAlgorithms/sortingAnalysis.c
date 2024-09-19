@@ -19,41 +19,22 @@
 int main()
 {
     int testArr[ARRAY_SIZE];
-    int testArr2[ARRAY_SIZE];
 
     srand(time(NULL));
 
     // print out unsorted list
     for (int i = 0; i < ARRAY_SIZE; i++) 
     {
-        int random = rand() % (100) + 1;
         // Find the random number in the range [min, max]
-        testArr[i] = random;
-        testArr2[i] = random;
+        testArr[i] = rand() % (100) + 1;
 
     }
     // copyArray(testArr, testArr2, ARRAY_SIZE);
     printArray(testArr, ARRAY_SIZE);
     printf("\n\n");
 
-    /*
-        START OF SORTING LOGIC AND TESTING
-    */
-
     struct timeval start, end;
     
-    gettimeofday(&start, 0);
-
-    //Start sorting
-    quickSort(testArr2, 0, ARRAY_SIZE);
-
-    gettimeofday(&end, 0);
-    double timeDif = (end.tv_sec - start.tv_sec) + 1e-6 * (end.tv_usec - start.tv_usec);
-    printf("Time Taken for QuickSort: %lf\n", timeDif);
-    /*
-            END OF SORTING LOGIC
-    */
-
     gettimeofday(&start, 0);
 
     //Start sorting
@@ -61,12 +42,10 @@ int main()
 
     gettimeofday(&end, 0);
 
-    timeDif = (end.tv_sec - start.tv_sec) + 1e-6 * (end.tv_usec - start.tv_usec);
+    double timeDif = (end.tv_sec - start.tv_sec) + 1e-6 * (end.tv_usec - start.tv_usec);
     printf("Time Taken for Middlesort: %lf\n", timeDif);
     
     printArray(testArr, ARRAY_SIZE);
-
-    printArray(testArr2, ARRAY_SIZE);
     
     return 0;
 }
