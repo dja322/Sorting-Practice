@@ -13,30 +13,28 @@
 #include "Quicksort.h"
 #include "MiddleSort.h"
 
-#define ARRAY_SIZE 8
+#define ARRAY_SIZE 10
 
 
 int main()
 {
-    //int testArr[ARRAY_SIZE];
-    int testArr[] = {651, 820, 810, 492, 46, 412, 976, 590};
-
+    int testArr[ARRAY_SIZE];
     int testArr2[ARRAY_SIZE];
 
     srand(time(NULL));
 
-    //print out unsorted list
-    // for (int i = 0; i < ARRAY_SIZE; i++) {
+    // print out unsorted list
+    for (int i = 0; i < ARRAY_SIZE; i++) 
+    {
+        int random = rand() % (100) + 1;
+        // Find the random number in the range [min, max]
+        testArr[i] = random;
+        testArr2[i] = random;
 
-    //     // Find the random number in the range [min, max]
-    //     testArr[i] = rand() % (1000) + 1;
-
-    // }
-    copyArray(testArr, testArr2, ARRAY_SIZE);
-    printf("\n\n");
-
+    }
+    // copyArray(testArr, testArr2, ARRAY_SIZE);
     printArray(testArr, ARRAY_SIZE);
-
+    printf("\n\n");
 
     /*
         START OF SORTING LOGIC AND TESTING
@@ -56,8 +54,6 @@ int main()
             END OF SORTING LOGIC
     */
 
-    
-
     gettimeofday(&start, 0);
 
     //Start sorting
@@ -67,7 +63,10 @@ int main()
 
     timeDif = (end.tv_sec - start.tv_sec) + 1e-6 * (end.tv_usec - start.tv_usec);
     printf("Time Taken for Middlesort: %lf\n", timeDif);
+    
+    printArray(testArr, ARRAY_SIZE);
 
+    printArray(testArr2, ARRAY_SIZE);
     
     return 0;
 }

@@ -7,14 +7,14 @@
 //sorts list using THE COOL MiddleSort algorithm
 bool MiddleSort(int Array[], int sizeOfArray)
 {
-    int startIndex = sizeOfArray/2 - 1;
     int currentSortedSize = sizeOfArray % 2 == 0 ? 1 : 0;
+    int startIndex = sizeOfArray/2 - currentSortedSize;
     int endIndex = startIndex + currentSortedSize;
     int replacePosition;
     int currentLarge;
     int currentLow;
 
-    //create initial state
+    //create initial state with sorted one or two elements
     if (Array[startIndex] > Array[endIndex])
     {
         currentLarge = Array[startIndex];
@@ -26,12 +26,12 @@ bool MiddleSort(int Array[], int sizeOfArray)
         currentLarge = Array[endIndex];
     }
 
-
+    //set array preloop state
     Array[startIndex] = currentLow;
     Array[endIndex] = currentLarge;
 
-    startIndex--;
-    endIndex++;
+    startIndex -= 1;
+    endIndex += 1;
 
     //loop until end of array is passed
     while (startIndex >= 0 && endIndex < sizeOfArray)
@@ -48,16 +48,13 @@ bool MiddleSort(int Array[], int sizeOfArray)
             currentLarge = Array[endIndex];
         }
 
-        printf("Is this working? %d %d\n", Array[endIndex-1], currentLow);
-
-
         //if block to determine how elements are moved around and places
+            //if low is lowest
         if (currentLow < Array[startIndex+1])
         {
-            puts("IS THIS WHAT IS WRONG 1");
-
             Array[startIndex] = currentLow;
 
+            //check where largeest should go
             if (currentLarge < Array[endIndex-1])
             {
                 replacePosition = binarySearchToFindPosition2(Array, currentLarge,
@@ -65,39 +62,45 @@ bool MiddleSort(int Array[], int sizeOfArray)
                 moveRight2(Array, replacePosition, endIndex);
                 Array[replacePosition] = currentLarge;
             }
+            else
+            {
+                Array[endIndex] = currentLarge;
+            }
         }
+        //if the lowest and larger are the biggest so far
         else if (currentLow > Array[endIndex-1])
         {
-            puts("IS THIS WHAT IS WRONG 2");
             moveLeft(Array, startIndex, endIndex-1);
             Array[endIndex-1] = currentLow;
             Array[endIndex] = currentLarge;
         }
+        //if low tested value is not the largest or smallest
         else
         {
-            puts("IS THIS WHAT IS WRONG 3\n");
-
             replacePosition = binarySearchToFindPosition2(Array, currentLow,
                               startIndex+1, endIndex-1);
             moveLeft(Array, startIndex, replacePosition-1);
             Array[replacePosition-1] = currentLow;
 
-            puts("g");
-
-            replacePosition = binarySearchToFindPosition2(Array, currentLarge,
-                              startIndex, endIndex-1);
-            moveRight2(Array, replacePosition, endIndex);
-            Array[replacePosition] = currentLarge;
-            puts("gr");
-            
+            //check where largest should go, either at end or in sorted list
+            if (currentLarge < Array[endIndex-1])
+            {
+                replacePosition = binarySearchToFindPosition2(Array, currentLarge,
+                                startIndex, endIndex-1);
+                moveRight2(Array, replacePosition, endIndex);
+                Array[replacePosition] = currentLarge; 
+            }
+            else
+            {
+                Array[endIndex] = currentLarge;
+            }
         }
+        
+        //increment sorted array
         startIndex--;
         endIndex++;
     }
-
-
     return true;
-
 }
 
 /*
@@ -129,7 +132,6 @@ int moveLeft(int Array[], int startIndex, int endIndex)
     }   
     return erasedInteger;
 }
-
 
 /*
     Using binarySearch to find position of where element should be
