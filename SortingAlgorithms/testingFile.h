@@ -15,6 +15,9 @@ bool isSortedLowToHigh(int Array[], int sizeOfArray);
 
 unsigned long long getBitNumber(int Array[], int sizeOfArry);
 
+void initializeArray(int Array[], int sizeOfArray);
+
+
 MunitResult testSorted();
 
 MunitResult testSortsWork();

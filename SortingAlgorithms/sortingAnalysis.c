@@ -16,29 +16,32 @@
 
 
 #define ARRAY_SIZE 10
+#define NUMBER_OF_ARRAYS 10
+#define NUMBER_OF_SORTS 4
 
 int main(int argc, char* argv[])
 {
-    int testArr[ARRAY_SIZE];
+    run_Tests(argc, argv);
+    puts("\nTests Conculded, beginning analysis:\n");
 
-    srand(time(NULL));
+    int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE];
+    unsigned long long bitNumberArray[ARRAY_SIZE];
 
-    // print out unsorted list
-    for (int i = 0; i < ARRAY_SIZE; i++) 
+    for (int arrNumber = 0; arrNumber < NUMBER_OF_ARRAYS; ++arrNumber)
     {
-        // Find the random number in the range [min, max]
-        testArr[i] = rand() % (100) + 1;
+        initializeArray(Array[0][arrNumber], ARRAY_SIZE);
+        copyArray(Array[0][arrNumber], Array[1][arrNumber], ARRAY_SIZE);
+        copyArray(Array[0][arrNumber], Array[2][arrNumber], ARRAY_SIZE);
+        copyArray(Array[0][arrNumber], Array[3][arrNumber], ARRAY_SIZE);
 
+        bitNumberArray[arrNumber] = getBitNumber(Array[0][arrNumber], ARRAY_SIZE);
     }
-    // copyArray(testArr, testArr2, ARRAY_SIZE);
-    printf("\n\n");
+        
+
 
     struct timeval start, end;
     
     gettimeofday(&start, 0);
-
-    //Start sorting
-    MiddleSort(testArr, ARRAY_SIZE);
 
     gettimeofday(&end, 0);
 
@@ -46,14 +49,6 @@ int main(int argc, char* argv[])
     printf("Time Taken for Middlesort: %lf\n", timeDif);
 
 
-    unsigned long long num = 0;
-    int tArr[] = {1,2,4,3,2};
-
-    num = getBitNumber(tArr, 5);
-
-    printf("\n %llu", num);
-    
-    run_Tests(argc, argv);
     return 0;
 }
 

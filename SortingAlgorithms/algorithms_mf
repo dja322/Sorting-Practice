@@ -31,4 +31,4 @@ munit.o : munit.c munit.h
 	$(CC) $(CFLAGS) munit.c
 
 clean:
-	\rm *.o tests
+	\rm *.o sort.exe

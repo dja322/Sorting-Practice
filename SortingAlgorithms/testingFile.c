@@ -28,6 +28,17 @@ bool isSortedLowToHigh(int Array[], int sizeOfArray)
     return true;
 }
 
+void initializeArray(int Array[], int sizeOfArray)
+{
+    int rand = munit_rand_int_range(1, 10);
+
+    for (int index = 0; index < sizeOfArray; ++index)
+    {
+        Array[index] = rand;
+        rand = munit_rand_int_range(1, 10);
+    }
+}
+
 
 MunitResult testSorted()
 {
@@ -85,7 +96,6 @@ MunitTest tests[] = {
 static const MunitSuite test_suite = {
   (char*) "", tests, NULL, 1, MUNIT_SUITE_OPTION_NONE
 };
-
 
 
 int run_Tests(int argc, char* argv[])
