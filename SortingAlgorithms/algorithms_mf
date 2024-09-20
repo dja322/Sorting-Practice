@@ -4,7 +4,7 @@ CFLAGS = -Wall -std=c99 -pedantic -c $(DEBUG)
 LFLAGS = -Wall -std=c99 -pedantic $(DEBUG)
 
 tests : Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o MiddleSort.o testingFile.o munit.o
-	$(CC) $(LFLAGS) Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o MiddleSort.o testingFile.o munit.o -o sort
+	$(CC) $(LFLAGS) Array_Modification_Functions.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o MiddleSort.o testingFile.o munit.o -o sort.exe
 
 Array_Modification_Functions.o : Array_Modification_Functions.c Array_Modification_Functions.h
 	$(CC) $(CFLAGS) Array_Modification_Functions.c

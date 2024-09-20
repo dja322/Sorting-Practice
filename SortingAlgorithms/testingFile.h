@@ -13,6 +13,8 @@
 
 bool isSortedLowToHigh(int Array[], int sizeOfArray);
 
+unsigned long long getBitNumber(int Array[], int sizeOfArry);
+
 MunitResult testSorted();
 
 MunitResult testSortsWork();

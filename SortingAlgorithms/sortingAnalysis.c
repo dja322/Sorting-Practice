@@ -14,6 +14,7 @@
 #include "MiddleSort.h"
 #include "testingFile.h"
 
+
 #define ARRAY_SIZE 10
 
 int main(int argc, char* argv[])
@@ -44,7 +45,18 @@ int main(int argc, char* argv[])
     double timeDif = (end.tv_sec - start.tv_sec) + 1e-6 * (end.tv_usec - start.tv_usec);
     printf("Time Taken for Middlesort: %lf\n", timeDif);
 
-    run_Tests(argc, argv);
+
+    unsigned long long num = 0;
+    int tArr[] = {1,2,4,3,2};
+
+    num = getBitNumber(tArr, 5);
+
+    printf("\n %llu", num);
     
+    run_Tests(argc, argv);
     return 0;
 }
+
+
+
+

@@ -1,6 +1,20 @@
 
 #include "testingFile.h"
 
+unsigned long long getBitNumber(int Array[], int sizeOfArry)
+{
+    unsigned long long bitNumber = 0;
+
+    for (int index = 0; index < sizeOfArry - 1; index++)
+    {
+        if (Array[index] > Array[index+1])
+        {
+            bitNumber = bitNumber + (1 << index);
+        }
+    }
+
+    return bitNumber;
+}
 
 bool isSortedLowToHigh(int Array[], int sizeOfArray)
 {
@@ -64,7 +78,8 @@ MunitResult testSortsWork()
 
 MunitTest tests[] = {
   { "/testSorted", testSorted, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL },
-  { "/my-testSortsWork", testSortsWork, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL}
+  { "/my-testSortsWork", testSortsWork, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL},
+  {NULL}
 };
 
 static const MunitSuite test_suite = {
