@@ -3,6 +3,10 @@
         "stdlib.h": "c",
         "stdbool.h": "c",
         "insertbinary.h": "c",
-        "middlesort.h": "c"
+        "middlesort.h": "c",
+        "array_modification_functions.h": "c",
+        "testingfile.h": "c",
+        "munit.h": "c",
+        "quicksort.h": "c"
     }
 }

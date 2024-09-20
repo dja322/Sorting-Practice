@@ -33,4 +33,5 @@
 
 # Files/Folders
 munit/
-tests
+munit.c
+munit.h

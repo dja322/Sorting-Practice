@@ -12,11 +12,11 @@
 #include "InsertBinary.h"
 #include "Quicksort.h"
 #include "MiddleSort.h"
+#include "testingFile.h"
 
 #define ARRAY_SIZE 10
 
-
-int main()
+int main(int argc, char* argv[])
 {
     int testArr[ARRAY_SIZE];
 
@@ -30,7 +30,6 @@ int main()
 
     }
     // copyArray(testArr, testArr2, ARRAY_SIZE);
-    printArray(testArr, ARRAY_SIZE);
     printf("\n\n");
 
     struct timeval start, end;
@@ -44,8 +43,8 @@ int main()
 
     double timeDif = (end.tv_sec - start.tv_sec) + 1e-6 * (end.tv_usec - start.tv_usec);
     printf("Time Taken for Middlesort: %lf\n", timeDif);
-    
-    printArray(testArr, ARRAY_SIZE);
+
+    run_Tests(argc, argv);
     
     return 0;
 }

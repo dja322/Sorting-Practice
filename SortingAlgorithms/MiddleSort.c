@@ -14,9 +14,6 @@ bool MiddleSort(int Array[], int sizeOfArray)
     int currentLarge;
     int currentLow;
 
-    printArray(Array, sizeOfArray);
-
-
     //create initial state with sorted one or two elements
     if (Array[startIndex] > Array[endIndex])
     {
@@ -39,7 +36,6 @@ bool MiddleSort(int Array[], int sizeOfArray)
     //loop until end of array is passed
     while (startIndex >= 0 && endIndex < sizeOfArray)
     {
-        printArray(Array, sizeOfArray);
 
         //checks which of the two picks is larger/smaller
         if (Array[startIndex] > Array[endIndex])
@@ -103,8 +99,8 @@ bool MiddleSort(int Array[], int sizeOfArray)
         
 
         //increment sorted array
-        startIndex--;
-        endIndex++;
+        --startIndex;
+        ++endIndex;
     }
     return true;
 }
