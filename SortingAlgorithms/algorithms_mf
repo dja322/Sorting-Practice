@@ -27,8 +27,8 @@ MiddleSort.o : MiddleSort.c MiddleSort.h
 testingFile.o : testingFile.c testingFile.h
 	$(CC) $(CFLAGS) testingFile.c
 
-munit.o : munit.c munit.h
-	$(CC) $(CFLAGS) munit.c
+munit.o : ../munit/munit.c ../munit/munit.h
+	$(CC) $(CFLAGS) ../munit/munit.c
 
 clean:
 	\rm *.o sort.exe
