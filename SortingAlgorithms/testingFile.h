@@ -9,8 +9,6 @@
 #include "Quicksort.h"
 #include "MiddleSort.h"
 
-#define ARRAY_SIZE 10
-
 bool isSortedLowToHigh(int Array[], int sizeOfArray);
 
 unsigned long long getBitNumber(int Array[], int sizeOfArry);

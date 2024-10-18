@@ -1,6 +1,8 @@
 
 #include "testingFile.h"
 
+#define ARRAY_SIZE 10
+
 unsigned long long getBitNumber(int Array[], int sizeOfArry)
 {
     unsigned long long bitNumber = 0;
@@ -30,7 +32,7 @@ bool isSortedLowToHigh(int Array[], int sizeOfArray)
 
 void initializeArray(int Array[], int sizeOfArray)
 {
-    int rand = munit_rand_int_range(1, 10);
+    int rand = munit_rand_int_range(1, 100);
 
     for (int index = 0; index < sizeOfArray; ++index)
     {

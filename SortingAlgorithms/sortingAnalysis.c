@@ -15,7 +15,7 @@
 #include "testingFile.h"
 
 
-#define ARRAY_SIZE 10
+#define ARRAY_SIZE 100
 #define NUMBER_OF_ARRAYS 10
 #define NUMBER_OF_SORTS 4
 
@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
 
     int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE];
     unsigned long long bitNumberArray[ARRAY_SIZE];
+    long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS];
 
     for (int arrNumber = 0; arrNumber < NUMBER_OF_ARRAYS; ++arrNumber)
     {
@@ -37,16 +38,60 @@ int main(int argc, char* argv[])
         bitNumberArray[arrNumber] = getBitNumber(Array[0][arrNumber], ARRAY_SIZE);
     }
         
-
-
+    
     struct timeval start, end;
     
-    gettimeofday(&start, 0);
+    for (int arrNumber = 0; arrNumber < NUMBER_OF_ARRAYS; ++arrNumber)
+    {
+        //middle sort measure
 
-    gettimeofday(&end, 0);
+        gettimeofday(&start, 0);
 
-    double timeDif = (end.tv_sec - start.tv_sec) + 1e-6 * (end.tv_usec - start.tv_usec);
-    printf("Time Taken for Middlesort: %lf\n", timeDif);
+        MiddleSort(Array[0][arrNumber], ARRAY_SIZE);
+
+        gettimeofday(&end, 0);
+
+        timesArray[0][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;//(end.tv_sec - start.tv_sec);// + 1e-10 * (end.tv_usec - start.tv_usec);
+
+        //InsertBinary sort measure
+
+        gettimeofday(&start, 0);
+
+        InsertBinary(Array[1][arrNumber], ARRAY_SIZE);
+
+        gettimeofday(&end, 0);
+
+        timesArray[1][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;//(end.tv_sec - start.tv_sec);// + 1e-10 * (end.tv_usec - start.tv_usec);
+
+        //QuickSort
+
+        gettimeofday(&start, 0);
+
+        quickSort(Array[2][arrNumber], 0, ARRAY_SIZE);
+
+        gettimeofday(&end, 0);
+
+        timesArray[2][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;//(end.tv_sec - start.tv_sec);// + 1e-10 * (end.tv_usec - start.tv_usec);
+
+        gettimeofday(&start, 0);
+
+        bubbleSort(Array[3][arrNumber], ARRAY_SIZE);
+
+        gettimeofday(&end, 0);
+
+        timesArray[3][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;//(end.tv_sec - start.tv_sec);// + 1e-10 * (end.tv_usec - start.tv_usec);
+    }
+
+
+    for (int index = 0; index < NUMBER_OF_ARRAYS; ++index)
+    {
+        printf("Order Binary Number: %llu\n", bitNumberArray[index]);
+        printf("MiddleSort: %ld\n", timesArray[0][index]);
+        printf("InsertBinarySort: %ld\n", timesArray[1][index]);
+        printf("QuickSort: %ld\n", timesArray[2][index]);
+        printf("BubblesSort: %ld\n", timesArray[3][index]);
+        printf("\n\n");
+    }
 
 
     return 0;
