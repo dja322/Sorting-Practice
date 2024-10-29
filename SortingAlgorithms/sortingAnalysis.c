@@ -14,18 +14,29 @@
 #include "MiddleSort.h"
 #include "testingFile.h"
 
-
 #define ARRAY_SIZE 100
 #define NUMBER_OF_ARRAYS 10
 #define NUMBER_OF_SORTS 4
+
+void analyze(
+    //create 3D array for sorts and a group of array of size ARRAY_SIZE
+    int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE],
+    //bit number array for analysis
+    unsigned long long bitNumberArray[ARRAY_SIZE],
+    //stores the time needed to sort each array
+    long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS]
+);
 
 int main(int argc, char* argv[])
 {
     run_Tests(argc, argv);
     puts("\nTests Conculded, beginning analysis:\n");
 
+    //create 3D array for sorts and a group of array of size ARRAY_SIZE
     int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE];
+    //bit number array for analysis
     unsigned long long bitNumberArray[ARRAY_SIZE];
+    //stores the time needed to sort each array
     long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS];
 
     for (int arrNumber = 0; arrNumber < NUMBER_OF_ARRAYS; ++arrNumber)
@@ -93,10 +104,26 @@ int main(int argc, char* argv[])
         printf("\n\n");
     }
 
+    analyze(Array, bitNumberArray, timesArray);
 
     return 0;
 }
 
+void analyze(
+    //create 3D array for sorts and a group of array of size ARRAY_SIZE
+    int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE],
+    //bit number array for analysis
+    unsigned long long bitNumberArray[ARRAY_SIZE],
+    //stores the time needed to sort each array
+    long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS]
+)
+{
+    printf("\n\nBelow is a table and analysis of the sorting methods");
 
+    
+    for (int index = 0; index < NUMBER_OF_ARRAYS; index++)
+    {
 
+    }
 
+}
