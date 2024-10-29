@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
         gettimeofday(&end, 0);
 
-        timesArray[0][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;//(end.tv_sec - start.tv_sec);// + 1e-10 * (end.tv_usec - start.tv_usec);
+        timesArray[0][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;
 
         //InsertBinary sort measure
 
@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 
         gettimeofday(&end, 0);
 
-        timesArray[1][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;//(end.tv_sec - start.tv_sec);// + 1e-10 * (end.tv_usec - start.tv_usec);
+        timesArray[1][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;
 
         //QuickSort
 
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 
         gettimeofday(&end, 0);
 
-        timesArray[2][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;//(end.tv_sec - start.tv_sec);// + 1e-10 * (end.tv_usec - start.tv_usec);
+        timesArray[2][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;
 
         gettimeofday(&start, 0);
 
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 
         gettimeofday(&end, 0);
 
-        timesArray[3][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;//(end.tv_sec - start.tv_sec);// + 1e-10 * (end.tv_usec - start.tv_usec);
+        timesArray[3][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;
     }
 
 
