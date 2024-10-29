@@ -22,10 +22,13 @@ void analyze(
     //create 3D array for sorts and a group of array of size ARRAY_SIZE
     int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE],
     //bit number array for analysis
-    unsigned long long bitNumberArray[ARRAY_SIZE],
+    unsigned long long bitNumberArray[NUMBER_OF_ARRAYS],
     //stores the time needed to sort each array
     long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS]
 );
+
+int minOfArray(long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS], int arrayCheck);
+
 
 int main(int argc, char* argv[])
 {
@@ -49,9 +52,9 @@ int main(int argc, char* argv[])
         bitNumberArray[arrNumber] = getBitNumber(Array[0][arrNumber], ARRAY_SIZE);
     }
         
-    
     struct timeval start, end;
     
+    //loop through every array and sort them using each of the sorting methods
     for (int arrNumber = 0; arrNumber < NUMBER_OF_ARRAYS; ++arrNumber)
     {
         //middle sort measure
@@ -101,7 +104,11 @@ int main(int argc, char* argv[])
         printf("InsertBinarySort: %ld\n", timesArray[1][index]);
         printf("QuickSort: %ld\n", timesArray[2][index]);
         printf("BubblesSort: %ld\n", timesArray[3][index]);
+
+
+
         printf("\n\n");
+
     }
 
     analyze(Array, bitNumberArray, timesArray);
@@ -109,21 +116,53 @@ int main(int argc, char* argv[])
     return 0;
 }
 
+//generic analyzing, will specify further
 void analyze(
     //create 3D array for sorts and a group of array of size ARRAY_SIZE
     int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE],
     //bit number array for analysis
-    unsigned long long bitNumberArray[ARRAY_SIZE],
+    unsigned long long bitNumberArray[NUMBER_OF_ARRAYS],
     //stores the time needed to sort each array
     long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS]
 )
 {
-    printf("\n\nBelow is a table and analysis of the sorting methods");
+    /*
+        What to find out
+        What kind of list is each sort most effecient for
+        How does the difference in bin numbers impact performance of each sort
+    */
+    printf("Below is a table and analysis of the sorting methods\n");
 
-    
+    unsigned long long averageBinary = 0;
+    int averageTimes[] = {0,0,0,0};
+
+
+    //find averages of binary and sort times
     for (int index = 0; index < NUMBER_OF_ARRAYS; index++)
     {
-
+        averageBinary = averageBinary + bitNumberArray[index] / NUMBER_OF_ARRAYS;
+        averageTimes[0] += timesArray[0][index];
+        averageTimes[1] += timesArray[1][index];
+        averageTimes[2] += timesArray[2][index];
+        averageTimes[3] += timesArray[3][index];
     }
+    averageTimes[0] /= NUMBER_OF_ARRAYS;
+    averageTimes[1] /= NUMBER_OF_ARRAYS;
+    averageTimes[2] /= NUMBER_OF_ARRAYS;
+    averageTimes[3] /= NUMBER_OF_ARRAYS;
 
+    printf("Average binary: %llu\n", averageBinary);
+    printf("Average time for MiddleSort: %d\n", averageTimes[0]);
+    printf("Average time for InsertBinarySort: %d\n", averageTimes[1]);
+    printf("Average time for QuickSort: %d\n", averageTimes[2]);
+    printf("Average time for BubblesSort: %d\n", averageTimes[3]);
+
+
+
+}
+    // long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS];
+
+int minOfArray(long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS], int arrayCheck)
+{
+    return 0;
 }
