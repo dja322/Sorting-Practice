@@ -64,6 +64,7 @@ MunitResult testSortsWork()
     int quickSortTestArr[ARRAY_SIZE];
     int binInsertSortTestArr[ARRAY_SIZE];
     int bubbleSortTestArr[ARRAY_SIZE];
+    int meanSortTestArr[ARRAY_SIZE];
 
     int rand;
     for (int index = 0; index < ARRAY_SIZE; index++)
@@ -73,6 +74,7 @@ MunitResult testSortsWork()
         quickSortTestArr[index] = rand;
         binInsertSortTestArr[index] = rand;
         bubbleSortTestArr[index] = rand;
+        meanSortTestArr[index] = rand;
     }
 
 
@@ -80,11 +82,13 @@ MunitResult testSortsWork()
     quickSort(quickSortTestArr, 0, ARRAY_SIZE);
     InsertBinary(binInsertSortTestArr, ARRAY_SIZE);
     bubbleSort(bubbleSortTestArr, ARRAY_SIZE);
+    mean_sort(meanSortTestArr, ARRAY_SIZE);
 
     munit_assert(isSortedLowToHigh(middleSortTestArr, ARRAY_SIZE));
     munit_assert(isSortedLowToHigh(quickSortTestArr, ARRAY_SIZE));
     munit_assert(isSortedLowToHigh(binInsertSortTestArr, ARRAY_SIZE));
     munit_assert(isSortedLowToHigh(bubbleSortTestArr, ARRAY_SIZE));
+    munit_assert(isSortedLowToHigh(meanSortTestArr, ARRAY_SIZE));
 
     return MUNIT_OK;
 }

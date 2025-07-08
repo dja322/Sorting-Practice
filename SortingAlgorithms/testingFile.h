@@ -8,6 +8,7 @@
 #include "InsertBinary.h"
 #include "Quicksort.h"
 #include "MiddleSort.h"
+#include "MeanSort.h"
 
 bool isSortedLowToHigh(int Array[], int sizeOfArray);
 
