@@ -34,7 +34,7 @@ int minOfArray(long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS], int arrayChec
 int main(int argc, char* argv[])
 {
     run_Tests(argc, argv);
-    puts("\nTests Conculded, beginning analysis:\n");
+    puts("\nTests Concluded, beginning analysis:\n");
 
     //create 3D array for sorts and a group of array of size ARRAY_SIZE
     int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE];
