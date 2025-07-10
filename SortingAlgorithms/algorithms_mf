@@ -3,8 +3,8 @@ DEBUG = -g
 CFLAGS = -Wall -std=c99 -pedantic -c $(DEBUG)
 LFLAGS = -Wall -std=c99 -pedantic $(DEBUG)
 
-tests : Array_Modification_Functions.o MeanSort.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o MiddleSort.o testingFile.o munit.o
-	$(CC) $(LFLAGS) Array_Modification_Functions.o MeanSort.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o MiddleSort.o testingFile.o munit.o -o sort.exe
+tests : Array_Modification_Functions.o MeanSort.o Mergesort.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o MiddleSort.o testingFile.o munit.o
+	$(CC) $(LFLAGS) Array_Modification_Functions.o MeanSort.o Mergesort.o Bubblesort.o InsertBinary.o Quicksort.o sortingAnalysis.o MiddleSort.o testingFile.o munit.o -o sort.exe
 
 Array_Modification_Functions.o : Array_Modification_Functions.c Array_Modification_Functions.h
 	$(CC) $(CFLAGS) Array_Modification_Functions.c
@@ -26,6 +26,9 @@ MiddleSort.o : MiddleSort.c MiddleSort.h
 
 MeanSort.o : MeanSort.c MeanSort.h
 	$(CC) $(CFLAGS) MeanSort.c
+
+Mergesort.o : Mergesort.c Mergesort.h
+	$(CC) $(CFLAGS) Mergesort.c
 
 testingFile.o : testingFile.c testingFile.h
 	$(CC) $(CFLAGS) testingFile.c

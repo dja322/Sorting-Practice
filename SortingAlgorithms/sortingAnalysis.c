@@ -13,6 +13,7 @@
 #include "Quicksort.h"
 #include "MiddleSort.h"
 #include "MeanSort.h"
+#include "Mergesort.h"
 #include "testingFile.h"
 
 //Variable definitions for testing and analysis
@@ -23,7 +24,7 @@
 //to account for the new number of sorts
 #define ARRAY_SIZE 100
 #define NUMBER_OF_ARRAYS 10
-#define NUMBER_OF_SORTS 5
+#define NUMBER_OF_SORTS 6
 
 //function prototypes
 void analyze(
@@ -56,6 +57,7 @@ int main(int argc, char* argv[])
         copyArray(Array[0][arrNumber], Array[2][arrNumber], ARRAY_SIZE);
         copyArray(Array[0][arrNumber], Array[3][arrNumber], ARRAY_SIZE);
         copyArray(Array[0][arrNumber], Array[4][arrNumber], ARRAY_SIZE);
+        copyArray(Array[0][arrNumber], Array[5][arrNumber], ARRAY_SIZE);
 
         bitNumberArray[arrNumber] = getBitNumber(Array[0][arrNumber], ARRAY_SIZE);
     }
@@ -113,6 +115,15 @@ int main(int argc, char* argv[])
         gettimeofday(&end, 0);
 
         timesArray[4][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;
+
+        //Mergesort
+        gettimeofday(&start, 0);
+
+        mergeSort(Array[5][arrNumber], 0, ARRAY_SIZE - 1);
+
+        gettimeofday(&end, 0);
+
+        timesArray[5][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;
     }
 
     //print the results of the sorting methods and their times
@@ -124,6 +135,7 @@ int main(int argc, char* argv[])
         printf("QuickSort: %ld\n", timesArray[2][index]);
         printf("BubblesSort: %ld\n", timesArray[3][index]);
         printf("MeanSort: %ld\n", timesArray[4][index]);
+        printf("Mergesort: %ld\n", timesArray[5][index]);
 
         printf("\n\n");
 
@@ -169,6 +181,7 @@ void analyze(
         averageTimes[2] += timesArray[2][index];
         averageTimes[3] += timesArray[3][index];
         averageTimes[4] += timesArray[4][index];
+        averageTimes[5] += timesArray[5][index];
     }
     //divide by number of arrays to get average
     averageTimes[0] /= NUMBER_OF_ARRAYS;
@@ -176,6 +189,7 @@ void analyze(
     averageTimes[2] /= NUMBER_OF_ARRAYS;
     averageTimes[3] /= NUMBER_OF_ARRAYS;
     averageTimes[4] /= NUMBER_OF_ARRAYS;
+    averageTimes[5] /= NUMBER_OF_ARRAYS;
 
     //print the averages
     printf("Average binary number: %llu\n", averageBinary);
@@ -184,6 +198,7 @@ void analyze(
     printf("Average time for QuickSort: %d\n", averageTimes[2]);
     printf("Average time for BubblesSort: %d\n", averageTimes[3]);
     printf("Average time for MeanSort: %d\n", averageTimes[4]);
+    printf("Average time for Mergesort: %d\n", averageTimes[5]);
 
     free(averageTimes);
 }
