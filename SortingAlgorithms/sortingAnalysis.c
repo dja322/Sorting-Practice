@@ -15,10 +15,17 @@
 #include "MeanSort.h"
 #include "testingFile.h"
 
+//Variable definitions for testing and analysis
+//Define the size of the arrays, number of arrays, and number of sorts 
+//that are being tested and analyzed
+//These can be changed to test different sizes and numbers of sorts
+//If NUMBER_OF_SORTS is changed, the analyze function will need to be updated
+//to account for the new number of sorts
 #define ARRAY_SIZE 100
 #define NUMBER_OF_ARRAYS 10
 #define NUMBER_OF_SORTS 5
 
+//function prototypes
 void analyze(
     //create 3D array for sorts and a group of array of size ARRAY_SIZE
     int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE],
@@ -27,9 +34,6 @@ void analyze(
     //stores the time needed to sort each array
     long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS]
 );
-
-int minOfArray(long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS], int arrayCheck);
-
 
 int main(int argc, char* argv[])
 {
@@ -43,6 +47,8 @@ int main(int argc, char* argv[])
     //stores the time needed to sort each array
     long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS];
 
+    //initialize the arrays and copy them to each of the sorting methods
+    //This is done so that each sorting method has the same initial array to sort
     for (int arrNumber = 0; arrNumber < NUMBER_OF_ARRAYS; ++arrNumber)
     {
         initializeArray(Array[0][arrNumber], ARRAY_SIZE);
@@ -53,10 +59,12 @@ int main(int argc, char* argv[])
 
         bitNumberArray[arrNumber] = getBitNumber(Array[0][arrNumber], ARRAY_SIZE);
     }
-        
+    
+    //create a timeval struct to measure the time taken by each sorting method
     struct timeval start, end;
     
     //loop through every array and sort them using each of the sorting methods
+    //and measure the time taken by each sorting method
     for (int arrNumber = 0; arrNumber < NUMBER_OF_ARRAYS; ++arrNumber)
     {
         //middle sort measure
@@ -107,7 +115,7 @@ int main(int argc, char* argv[])
         timesArray[4][arrNumber] = (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec-start.tv_usec;
     }
 
-
+    //print the results of the sorting methods and their times
     for (int index = 0; index < NUMBER_OF_ARRAYS; ++index)
     {
         printf("Order Binary Number: %llu\n", bitNumberArray[index]);
@@ -154,6 +162,7 @@ void analyze(
     //find averages of binary and sort times
     for (int index = 0; index < NUMBER_OF_ARRAYS; index++)
     {
+        //add to average binary and times
         averageBinary = averageBinary + bitNumberArray[index] / NUMBER_OF_ARRAYS;
         averageTimes[0] += timesArray[0][index];
         averageTimes[1] += timesArray[1][index];
@@ -161,13 +170,15 @@ void analyze(
         averageTimes[3] += timesArray[3][index];
         averageTimes[4] += timesArray[4][index];
     }
+    //divide by number of arrays to get average
     averageTimes[0] /= NUMBER_OF_ARRAYS;
     averageTimes[1] /= NUMBER_OF_ARRAYS;
     averageTimes[2] /= NUMBER_OF_ARRAYS;
     averageTimes[3] /= NUMBER_OF_ARRAYS;
     averageTimes[4] /= NUMBER_OF_ARRAYS;
 
-    printf("Average binary: %llu\n", averageBinary);
+    //print the averages
+    printf("Average binary number: %llu\n", averageBinary);
     printf("Average time for MiddleSort: %d\n", averageTimes[0]);
     printf("Average time for InsertBinarySort: %d\n", averageTimes[1]);
     printf("Average time for QuickSort: %d\n", averageTimes[2]);
@@ -175,10 +186,4 @@ void analyze(
     printf("Average time for MeanSort: %d\n", averageTimes[4]);
 
     free(averageTimes);
-}
-    // long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS];
-
-int minOfArray(long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS], int arrayCheck)
-{
-    return 0;
 }
