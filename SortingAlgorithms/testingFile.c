@@ -76,13 +76,18 @@ MunitResult testSortsWork()
         bubbleSortTestArr[index] = rand;
         meanSortTestArr[index] = rand;
     }
-
+    
+    printf("Mean Sort Test Array:\n");
+    printArray(meanSortTestArr, ARRAY_SIZE);
 
     MiddleSort(middleSortTestArr, ARRAY_SIZE);
     quickSort(quickSortTestArr, 0, ARRAY_SIZE);
     InsertBinary(binInsertSortTestArr, ARRAY_SIZE);
     bubbleSort(bubbleSortTestArr, ARRAY_SIZE);
     mean_sort(meanSortTestArr, ARRAY_SIZE);
+
+    printf("Mean Sort Test Array:\n");
+    printArray(meanSortTestArr, ARRAY_SIZE);
 
     munit_assert(isSortedLowToHigh(middleSortTestArr, ARRAY_SIZE));
     munit_assert(isSortedLowToHigh(quickSortTestArr, ARRAY_SIZE));

@@ -144,7 +144,11 @@ void analyze(
     printf("Below is a table and analysis of the sorting methods\n");
 
     unsigned long long averageBinary = 0;
-    int averageTimes[] = {0,0,0,0};
+    int* averageTimes = malloc(sizeof(int) * NUMBER_OF_ARRAYS);
+    for (int i = 0; i < NUMBER_OF_ARRAYS; i++)
+    {
+        averageTimes[i] = 0;
+    }
 
 
     //find averages of binary and sort times
@@ -170,8 +174,7 @@ void analyze(
     printf("Average time for BubblesSort: %d\n", averageTimes[3]);
     printf("Average time for MeanSort: %d\n", averageTimes[4]);
 
-
-
+    free(averageTimes);
 }
     // long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS];
 
