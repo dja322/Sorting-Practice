@@ -31,7 +31,5 @@
 *.out
 *.app
 
-# Files/Folders
-munit/
-
+# Debugging files
 *.txt

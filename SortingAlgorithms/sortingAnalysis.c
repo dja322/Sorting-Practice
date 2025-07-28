@@ -22,7 +22,7 @@
 //These can be changed to test different sizes and numbers of sorts
 //If NUMBER_OF_SORTS is changed, the analyze function will need to be updated
 //to account for the new number of sorts
-#define ARRAY_SIZE 100
+#define ARRAY_SIZE 10000
 #define NUMBER_OF_ARRAYS 10
 #define NUMBER_OF_SORTS 6
 
@@ -31,7 +31,7 @@ void analyze(
     //create 3D array for sorts and a group of array of size ARRAY_SIZE
     int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE],
     //bit number array for analysis
-    unsigned long long bitNumberArray[NUMBER_OF_ARRAYS],
+    unsigned long long sortednessArray[NUMBER_OF_ARRAYS],
     //stores the time needed to sort each array
     long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS]
 );
@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
     //create 3D array for sorts and a group of array of size ARRAY_SIZE
     int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE];
     //bit number array for analysis
-    unsigned long long bitNumberArray[ARRAY_SIZE];
+    unsigned long long sortednessArray[ARRAY_SIZE];
     //stores the time needed to sort each array
     long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS];
 
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
         copyArray(Array[0][arrNumber], Array[4][arrNumber], ARRAY_SIZE);
         copyArray(Array[0][arrNumber], Array[5][arrNumber], ARRAY_SIZE);
 
-        bitNumberArray[arrNumber] = getBitNumber(Array[0][arrNumber], ARRAY_SIZE);
+        sortednessArray[arrNumber] = getSortednessNumber(Array[0][arrNumber], ARRAY_SIZE);
     }
     
     //create a timeval struct to measure the time taken by each sorting method
@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
     //print the results of the sorting methods and their times
     for (int index = 0; index < NUMBER_OF_ARRAYS; ++index)
     {
-        printf("Order Binary Number: %llu\n", bitNumberArray[index]);
+        printf("Order Binary Number: %llu\n", sortednessArray[index]);
         printf("MiddleSort: %ld\n", timesArray[0][index]);
         printf("InsertBinarySort: %ld\n", timesArray[1][index]);
         printf("QuickSort: %ld\n", timesArray[2][index]);
@@ -141,7 +141,7 @@ int main(int argc, char* argv[])
 
     }
 
-    analyze(Array, bitNumberArray, timesArray);
+    analyze(Array, sortednessArray, timesArray);
 
     return 0;
 }
@@ -151,7 +151,7 @@ void analyze(
     //create 3D array for sorts and a group of array of size ARRAY_SIZE
     int Array[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS][ARRAY_SIZE],
     //bit number array for analysis
-    unsigned long long bitNumberArray[NUMBER_OF_ARRAYS],
+    unsigned long long sortednessArray[NUMBER_OF_ARRAYS],
     //stores the time needed to sort each array
     long timesArray[NUMBER_OF_SORTS][NUMBER_OF_ARRAYS]
 )
@@ -175,7 +175,7 @@ void analyze(
     for (int index = 0; index < NUMBER_OF_ARRAYS; index++)
     {
         //add to average binary and times
-        averageBinary = averageBinary + bitNumberArray[index] / NUMBER_OF_ARRAYS;
+        averageBinary = averageBinary + sortednessArray[index] / NUMBER_OF_ARRAYS;
         averageTimes[0] += timesArray[0][index];
         averageTimes[1] += timesArray[1][index];
         averageTimes[2] += timesArray[2][index];

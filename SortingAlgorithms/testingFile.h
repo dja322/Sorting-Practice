@@ -14,8 +14,8 @@
 //checks if an array is sorted in ascending order
 bool isSortedLowToHigh(int Array[], int sizeOfArray);
 
-//generates a bit number based on the order of elements in the array
-unsigned long long getBitNumber(int Array[], int sizeOfArry);
+//generates a sortedness number based on the order of elements in the array
+unsigned long long getSortednessNumber(int Array[], int sizeOfArry);
 
 //initializes an array with random integers
 void initializeArray(int Array[], int sizeOfArray);

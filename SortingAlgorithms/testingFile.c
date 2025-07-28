@@ -4,23 +4,28 @@
 #define ARRAY_SIZE 10
 
 // Function to find the bit number of an array
-// This function calculates a bit number based on the order of elements in the array.
+// This function calculates a sortedness number based on the order of elements in the array.
 // It iterates through the array and checks if each element is greater than the next one.
-// the more unsorted the array is, the higher the bit number will be
+// the more unsorted the array is, the higher the sortedness number will be
 // Better ways to calculate the Unsortedness of an array could be implemented eventually
-unsigned long long getBitNumber(int Array[], int sizeOfArry)
+unsigned long long getSortednessNumber(int Array[], int sizeOfArry)
 {
-    unsigned long long bitNumber = 0;
+    unsigned long long sortednessNumber = 0;
+
+    unsigned long long maxSortednessNumber = 0;
 
     for (int index = 0; index < sizeOfArry - 1; index++)
     {
         if (Array[index] > Array[index+1])
         {
-            bitNumber = bitNumber + (1 << index);
+            sortednessNumber += 1;
         }
+        maxSortednessNumber += 1;
     }
 
-    return bitNumber;
+    double ratio = (double)sortednessNumber / (double)maxSortednessNumber;
+
+    return (unsigned long long)(ratio * 100); // Return the sortedness number as a percentage of the maximum sortedness number
 }
 
 //function to check if an array is sorted in ascending order

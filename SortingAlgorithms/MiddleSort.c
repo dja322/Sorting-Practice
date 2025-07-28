@@ -1,3 +1,29 @@
+/*
+  MiddleSort.c
+  
+  This file implements the MiddleSort algorithm, which sorts an array
+  by comparing elements from the middle outwards.
+
+  This algorithm runs similar insertion sort, but it uses the middle of the array
+  and moves outwards to sort the array
+
+  Example of algorithm:
+
+    [1,5,2,9,3,5,4,7]
+    first sort elements in 9 and 3 in positons 3 and 4
+    [1,5,2,3,9,5,4,7]
+    then sort 2 and 5 in positions 2 and 5
+    [1,5,2,3,5,9,4,7]
+    then sort 1 and 4 in positions 1 and 6
+    [1,2,3,4,5,9,5,7]
+    then sort 1 and 7 in positions 1 and 7
+    [1,2,3,4,5,5,7,9]
+
+    This algorithm is basic and not very efficient as it has the same complexity as insertion sort
+    but with added overhead of moving elements around.
+*/
+
+
 
 #include <stdbool.h>
 #include <stdio.h>

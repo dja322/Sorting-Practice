@@ -51,4 +51,5 @@ def checkBinaryNumbers(bin1, maxSize, currentCheckedElement):
         return 0   
     return 1
 
-main()
+if (__name__ == "__main__"):
+    main()
